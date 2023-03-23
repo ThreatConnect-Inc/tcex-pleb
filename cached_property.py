@@ -1,4 +1,4 @@
-"""Python Backports"""
+"""TcEx Module"""
 # standard library
 from collections.abc import Callable
 from functools import cached_property as functool_cached_property
@@ -11,8 +11,8 @@ class cached_property(functool_cached_property, Generic[R]):
     """Customized cached_property."""
 
     # pylint: disable=useless-super-delegation
-    def __init__(self, func: Callable[..., R]) -> None:
-        """Initialize Class properties."""
+    def __init__(self, func: Callable[..., R]):
+        """Initialize instance properties."""
         super().__init__(func)
 
     instances = []

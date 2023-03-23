@@ -33,7 +33,7 @@ class scoped_property(Generic[T]):
         """Remove instance from the instances class variable when it's destroyed."""
         scoped_property.instances = [i for i in scoped_property.instances if i != self]
 
-    def __get__(self, instance: Any, owner: Any) -> T:
+    def __get__(self, instance: Any, _: Any) -> T:
         """Return a thread-and-process-local value.
 
         Implementation per the descriptor protocol.
