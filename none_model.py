@@ -1,4 +1,4 @@
-"""None Model"""
+"""TcEx Framework Module"""
 
 from .singleton import Singleton
 

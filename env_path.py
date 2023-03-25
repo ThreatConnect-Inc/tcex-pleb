@@ -1,4 +1,4 @@
-"""ENV Str"""
+"""TcEx Framework Module"""
 # standard library
 import os
 import re

@@ -1,1 +1,1 @@
-"""Common Class Module"""
+"""TcEx Framework Module"""

@@ -1,4 +1,4 @@
-"""Singleton Class"""
+"""TcEx Framework Module"""
 # standard library
 import threading
 

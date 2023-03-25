@@ -1,4 +1,4 @@
-"""Proxies"""
+"""TcEx Framework Module"""
 # standard library
 from urllib.parse import quote
 

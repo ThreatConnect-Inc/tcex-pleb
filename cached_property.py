@@ -1,4 +1,4 @@
-"""TcEx Module"""
+"""TcEx Framework Module"""
 # standard library
 from collections.abc import Callable
 from functools import cached_property as functool_cached_property

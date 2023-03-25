@@ -1,4 +1,4 @@
-"""Internal Threading Logic"""
+"""TcEx Framework Module"""
 # standard library
 import logging
 import threading

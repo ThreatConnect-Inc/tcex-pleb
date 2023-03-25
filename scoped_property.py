@@ -1,4 +1,4 @@
-"""Declares a scoped_property decorator"""
+"""TcEx Framework Module"""
 
 # standard library
 import os
@@ -23,8 +23,7 @@ class scoped_property(Generic[T]):
     instances = []
 
     def __init__(self, wrapped: Callable[..., T]):
-        """Initialize."""
-
+        """Initialize the instance properties."""
         scoped_property.instances.append(self)
         self.wrapped = wrapped
         self.value = threading.local()
