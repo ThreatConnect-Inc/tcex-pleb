@@ -210,7 +210,9 @@ class Registry(Container):
     @property
     def token(self) -> 'Token':
         """Return a Token."""
-        return self.app.token
+        if hasattr(registry.app, 'token'):
+            # this is only used by the exit module of tcex
+            return self.app.token  # type: ignore
 
 
 registry = Registry()
