@@ -1,4 +1,4 @@
-"""TcEx Framework Module"""
+"""Declares a scoped_property decorator."""
 
 # standard library
 import os
@@ -44,21 +44,31 @@ class scoped_property(Generic[T]):
         if hasattr(self.value, 'data'):
             # A value has been created for this thread already, but we have to make sure we're in
             # the same process (threads are duplicated when a process is forked).
-            pid, value = self.value.data
-            if pid != os.getpid():
-                return self._create_value(self.wrapped, instance)
+            pid, value, stored_instance = self.value.data
+
+            # create a new instance if the following are not true:
+            # 1. Check for same pid
+            # 2. Check to ensure stored instance is the same as the current instance
+            if pid != os.getpid() or stored_instance is not instance:
+                return self._create_value(instance, self.wrapped)
 
             return value
 
         # A value has *not* been created for the calling thread
         # yet, so use the factory to create a new one.
-        new_value = self._create_value(self.wrapped, instance)
+        new_value = self._create_value(instance, self.wrapped)
         return new_value
 
-    def _create_value(self, wrapped, *args, **kwargs) -> T:
+    def _create_value(self, instance, wrapped, *args, **kwargs) -> T:
         """Call the wrapped factory function to get a new value."""
-        data = wrapped(*args, **kwargs)
-        setattr(self.value, 'data', (os.getpid(), data))
+        if instance:
+            data = wrapped(instance, *args, **kwargs)
+        else:
+            data = wrapped(*args, **kwargs)
+
+        # add data to threat.local
+        setattr(self.value, 'data', (os.getpid(), data, instance))
+
         return data
 
     @staticmethod
