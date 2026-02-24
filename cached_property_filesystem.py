@@ -3,7 +3,7 @@
 import contextlib
 import logging
 import os
-import pickle
+import pickle  # nosec
 import tempfile
 import time
 import weakref
@@ -12,10 +12,9 @@ from typing import TYPE_CHECKING, Any, ClassVar, Generic, TypeVar
 
 import wrapt
 
-from tcex.logger.trace_logger import TraceLogger
+from ..logger.trace_logger import TraceLogger
 
 if TYPE_CHECKING:
-    # standard library
     from collections.abc import Callable
 
 R = TypeVar('R')
@@ -216,7 +215,7 @@ class cached_property_filesystem(Generic[R]):  # noqa: N801
             return None
 
         try:
-            raw = pickle.loads(path.read_bytes())
+            raw = pickle.loads(path.read_bytes())  # nosec
             if now - raw['timestamp'] < self.ttl:
                 return raw['timestamp'], raw['value']
         except Exception as ex:
