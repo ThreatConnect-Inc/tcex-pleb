@@ -140,11 +140,11 @@ class MathFunctionsMixin(JmespathFunctionsBase):
         return value**exponent
 
     @functions.signature({'types': ['number']}, {'types': ['number']})
-    def _func_rand(self, min_: int, max_: int) -> int:
+    def _func_rand_int(self, min_: int, max_: int) -> int:
         """Return a random integer between min and max (inclusive).
 
         Expression:
-        rand(mn, mx)
+        rand_int(mn, mx)
 
         Data:
         {"mn": 1, "mx": 100}
